@@ -10,13 +10,14 @@
 
 ## Implementation
 
-- [ ] Update generated artifacts if the architecture or benchmark changes.
-- [ ] Keep local skills and `.portfolio/` as primary.
-- [ ] Record any external reference in `REFERENCES.md`.
+- [x] Implement the measurable claim without breaking the recorded architecture boundary.
+- [x] Keep local skills and `.portfolio/` as primary.
+- [x] Record external references in `REFERENCES.md`.
+- [x] Commit benchmark JSON and the matching README number.
 
 ## Publication
 
-- [ ] Validate project.
-- [ ] Confirm published CI is green.
-- [ ] Confirm article uses committed benchmark result.
-- [ ] Confirm `voice-check.md` verdict is aligned or intentionally overridden.
+- [x] Validate project.
+- [x] Confirm published CI is green.
+- [x] Confirm article uses committed benchmark result.
+- [x] Confirm `voice-check.md` verdict is aligned or intentionally overridden.

@@ -11,4 +11,4 @@
 - [x] No control characters or generated build outputs are tracked.
 - [x] OpenSpec artifacts reflect the final project state.
 - [x] Reuse snapshot reflects the final kit commit.
-- [ ] Repository is published and public CI is green.
+- [x] Repository is published and public CI is green.

@@ -23,7 +23,7 @@ Provides the synchronous money-movement boundary used by later outbox, saga, eve
 
 ## Default Demo Path
 
-- Status: benchmarked
+- Status: published
 - Runtime: Java 25 JRE with Kotlin 2.4.10 and Spring Boot 4.1.0
 - Benchmark command: `powershell -NoProfile -ExecutionPolicy Bypass -File tools/benchmark.ps1`
 

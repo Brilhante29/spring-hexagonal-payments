@@ -9,7 +9,7 @@ Project: `11 - spring-hexagonal-payments`
 - [x] after first working slice
 - [x] after benchmark result
 - [x] before publication
-- [ ] after CI failure, if applicable
+- [x] after first public CI result
 
 ## Findings
 
@@ -20,6 +20,7 @@ Project: `11 - spring-hexagonal-payments`
 | Spring Boot 4 modularized Flyway and defaults to Jackson 3 | `patch_now` | profiles/skills | Record starter and JSON migration rules in the Spring Kotlin profile | patched in kit `cffc3de` |
 | k6 custom summaries omit p99 unless requested | `patch_now` | skills/harness | Require `summaryTrendStats` to include p99 | patched in kit `cffc3de` |
 | Setup traffic can inflate reported throughput | `patch_now` | skills/harness | Separate warm-up metrics and divide measured iterations by measured duration | patched in kit `cffc3de` |
+| Published manifests generated unchecked OpenSpec tasks | `patch_now` | planner/validation | Derive implementation, benchmark, and publication checks from project status | patched in kit `75e2407` |
 | Sandbox staging can overwrite a newer project file | `reject` | tooling | Keep environment-specific copy mechanics outside the public kit; compare files before copy | mitigated locally |
 
 ## OpenSpec Self-Review
@@ -35,5 +36,5 @@ Project: `11 - spring-hexagonal-payments`
 - [x] Reusable improvements were patched or recorded.
 - [x] Project-specific implementation was not moved into the kit.
 - [x] Validation reflects repeated mistakes discovered during the project.
-- [x] Project was synced from final kit commit `cffc3de`.
-- [ ] Public CI is green on the published project commit.
+- [x] Project was synced from final kit commit `75e2407`.
+- [x] Public CI is green on the published project commit.

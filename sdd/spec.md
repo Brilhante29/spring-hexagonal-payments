@@ -45,4 +45,4 @@ Out of scope: PCI compliance, ledger, refunds, settlement, chargebacks, authenti
 - [x] Core line coverage is at least 75%.
 - [x] PostgreSQL behavior is covered with Testcontainers when Docker is available.
 - [x] OpenSpec artifacts and reuse review exist.
-- [ ] Public CI is green on the published commit.
+- [x] Public CI is green on the published commit.

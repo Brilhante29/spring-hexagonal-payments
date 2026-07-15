@@ -1,0 +1,150 @@
+id: 11
+name: spring-hexagonal-payments
+program:
+  id: backend-reliability-platform
+  narrative_fit: "Provides the synchronous money-movement boundary used by later outbox, saga, event-sourcing, gateway, and observability projects."
+  shared_assets:
+    - idempotent command contract
+    - PostgreSQL atomic insert pattern
+    - architecture boundary test
+    - p99 plus coverage benchmark contract
+status: benchmarked
+claim: "Idempotent payment authorization and capture preserve domain rules while Spring, JDBC, and PostgreSQL remain replaceable adapters."
+stack:
+  - java-25
+  - kotlin-2.4
+  - spring-boot-4.1
+  - spring-mvc
+  - spring-jdbc
+  - jackson-kotlin-3.1
+  - postgresql-18.4
+  - flyway-12.4
+  - testcontainers-2.0
+  - junit-6
+  - jacoco
+  - k6-2.1
+  - gradle-9.3
+  - docker
+language_profile:
+  primary: spring-kotlin-backend
+  secondary: []
+  reason: "Kotlin and Spring demonstrate JVM backend proficiency while explicit ports and SQL keep framework and persistence choices visible."
+decision_brain:
+  agentic_spec:
+    source: .portfolio/decision-brain/agentic-spec-governance.yaml
+    spec_store: portfolio-reuse-kit
+    schema: portfolio-system
+    project_config: openspec/config.yaml
+    component_pack: backend-reliability-platform
+    artifact_graph:
+      - intent->portfolio-impact->architecture-record
+      - architecture-record+portfolio-impact->component-pack
+      - component-pack->reuse-delta->benchmark-proof->tasks->verification
+  agent_graph:
+    mode: principal-agent-orchestrated
+    source: .portfolio/decision-brain/agent-graph.yaml
+    handoff: sdd/agent-handoff.md
+    local_first_runtime: docker
+  reuse_improvement_loop:
+    source: .portfolio/decision-brain/reuse-improvement-loop.yaml
+    review_path: sdd/reuse-improvement-review.md
+    current_status: reviewed
+  principles:
+    coupling_rule: "Domain and application packages do not depend on Spring, transport, JDBC, JPA, Flyway, PostgreSQL, brokers, or cloud SDKs."
+    solid: [srp, ocp, lsp, isp, dip]
+    simplicity_rule: "Keep one aggregate, two commands, one table, and narrow ports; add distributed patterns only when a later claim requires them."
+    testability_rule: "Domain and use cases run with an in-memory repository and direct transaction runner; PostgreSQL behavior is integration-tested separately."
+    rejected_overengineering:
+      - microservices
+      - CQRS and event sourcing
+      - Kafka or RabbitMQ
+      - GraphQL
+      - reactive database stack
+      - generic payment framework
+  stack_profile: spring-kotlin-backend
+  api_style: rest-http
+  messaging: none
+  cloud:
+    mode: none
+    local_provider: none
+    real_provider_target: none
+    emulated_services: []
+    adapter_rule: "No cloud SDK enters domain or application code; a managed PostgreSQL endpoint is configuration behind the JDBC adapter."
+    config_switch: CLOUD_PROVIDER=none
+    unsupported_behaviors:
+      - managed database failover
+      - multi-region consistency
+      - AWS API behavior; use Kumo if a later repository introduces it
+  database: postgresql
+  runtime: "Java 25 JRE with Kotlin 2.4.10 and Spring Boot 4.1.0"
+  library_policy: "Spring MVC matches blocking JDBC; JdbcClient keeps SQL explicit; Flyway owns schema evolution; Testcontainers uses real PostgreSQL; k6 owns load thresholds."
+  record_path: sdd/technical-decision.md
+  rejected_options:
+    - option: Spring Data JPA
+      reason: "The project must expose atomic idempotency SQL and row locking rather than hide them behind ORM behavior."
+    - option: WebFlux and R2DBC
+      reason: "The measured workload uses blocking PostgreSQL and gains no proven benefit from a reactive stack."
+    - option: GraphQL
+      reason: "Authorization and capture are stable command/resource operations with no client-driven selection need."
+    - option: Kafka or RabbitMQ
+      reason: "No asynchronous publication requirement exists in this slice."
+architecture:
+  style: hexagonal
+  reason: "Payment invariants must remain independent while HTTP, transactions, and PostgreSQL are concrete replaceable boundaries."
+  problem_forces:
+    domain_complexity: medium
+    integration_pressure: high
+    ui_state_complexity: none
+    data_or_ml_reproducibility: low
+    auditability: high
+    throughput_or_async: high
+    independent_deployability: medium
+  dependency_rule: "Input and output adapters depend inward on application ports and domain types; domain and application import no adapter or framework."
+  boundaries:
+    - payment domain aggregate and invariants
+    - authorization, lookup, and capture use cases
+    - repository and transaction output ports
+    - Spring MVC input adapter
+    - JDBC and Spring transaction output adapters
+    - Docker and k6 verification harness
+  rejected_alternatives:
+    - style: layered-mvc
+      reason: "Controller-service-repository folders alone would not enforce the dependency inversion the project claims."
+    - style: microservices
+      reason: "Splitting one aggregate adds network and consistency failure modes without an independent deployment need."
+    - style: cqrs-event-sourcing
+      reason: "Audit history and replay are not part of this repository's claim; later portfolio projects cover those forces directly."
+design_system:
+  tokens: .portfolio/design-system/tokens.yaml
+  readme_components:
+    - readme_header
+    - benchmark_card
+    - architecture_card
+    - references_table
+  diagram_required: true
+reuse:
+  kit_version: cffc3de
+  uses:
+    - catalog
+    - programs
+    - component-packs
+    - openspec-schema
+    - decision-brain
+    - agent-graph
+    - reuse-improvement-loop
+    - architecture-selector
+    - spring-kotlin-backend-profile
+    - design-system
+    - sdd
+    - benchmark-contract
+    - skills
+benchmark:
+  primary_metric: p99_latency_ms
+  unit: milliseconds
+  command: powershell -NoProfile -ExecutionPolicy Bypass -File tools/benchmark.ps1
+  result_path: benchmarks/results/payments-baseline.json
+release:
+  docker: docker run --rm spring-hexagonal-payments
+  no_secret_default_path: true
+  readme_has_number: true
+  references_documented: true

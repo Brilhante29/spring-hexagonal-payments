@@ -1,0 +1,25 @@
+{
+  "project": "spring-hexagonal-payments",
+  "metric": "p99_latency_ms",
+  "value": 134.165,
+  "unit": "milliseconds",
+  "timestamp": "2026-07-15T19:00:42.102Z",
+  "command": "docker run --rm spring-hexagonal-payments",
+  "repeat": 2,
+  "summary": {
+    "p99_latency_ms": 134.165,
+    "throughput_rps": 772.8,
+    "measured_requests": 7728,
+    "warmup_requests": 200,
+    "coverage_percent": 95.65,
+    "checks_rate": 1,
+    "http_failure_rate": 0
+  },
+  "environment": {
+    "java": "25",
+    "kotlin": "2.4.10",
+    "spring_boot": "4.1.0",
+    "postgresql": "18.4",
+    "load_tool": "k6-2.1.0"
+  }
+}

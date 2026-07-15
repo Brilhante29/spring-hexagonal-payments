@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  title: Hexagonal Payments API
+  version: 1.0.0
+  description: Idempotent authorization and capture contract used by project #11.
+servers:
+  - url: http://localhost:8080
+paths:
+  /v1/payments:
+    post:
+      operationId: authorizePayment
+      summary: Authorize an idempotent payment
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '201':
+          description: Payment authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '200':
+          description: Existing payment returned for the same key and payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /v1/payments/{id}:
+    parameters:
+      - $ref: '#/components/parameters/PaymentId'
+    get:
+      operationId: getPayment
+      summary: Get a payment
+      responses:
+        '200':
+          description: Payment found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v1/payments/{id}/capture:
+    parameters:
+      - $ref: '#/components/parameters/PaymentId'
+    post:
+      operationId: capturePayment
+      summary: Capture an authorized payment idempotently
+      responses:
+        '200':
+          description: Payment captured or existing capture replayed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 128
+    PaymentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    PaymentRequest:
+      type: object
+      additionalProperties: false
+      required: [amount_minor, currency, merchant_reference]
+      properties:
+        amount_minor:
+          type: integer
+          format: int64
+          minimum: 1
+        currency:
+          type: string
+          pattern: '^[A-Z]{3}$'
+        merchant_reference:
+          type: string
+          minLength: 1
+          maxLength: 128
+    PaymentResponse:
+      type: object
+      additionalProperties: false
+      required: [id, amount_minor, currency, merchant_reference, status, created_at]
+      properties:
+        id:
+          type: string
+          format: uuid
+        amount_minor:
+          type: integer
+          format: int64
+        currency:
+          type: string
+        merchant_reference:
+          type: string
+        status:
+          type: string
+          enum: [AUTHORIZED, CAPTURED]
+        created_at:
+          type: string
+          format: date-time
+        captured_at:
+          oneOf:
+            - type: string
+              format: date-time
+            - type: 'null'
+    ApiError:
+      type: object
+      additionalProperties: false
+      required: [code, message]
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: Request validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Conflict:
+      description: Idempotency key was reused with a different payload
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: Payment not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'

@@ -6,58 +6,43 @@
 
 ## Claim
 
-Este projeto prova que: arquitetura hexagonal em pagamentos.
+Idempotent payment authorization and capture preserve domain rules while Spring, JDBC, and PostgreSQL remain replaceable adapters.
 
-## Stack
+## Users And Outcome
 
-java21, spring-boot, postgresql, flyway, testcontainers, k6, docker
-
-## User-visible output
-
-- Docker command: pending
-- README opens with: # #11 spring-hexagonal-payments
-- Benchmark table: coverage_percent, p99_latency_ms
+- A merchant authorizes a payment with a stable idempotency key.
+- A retried identical request receives the original payment.
+- A key reused with another payload is rejected.
+- An authorized payment can be captured once and replayed safely.
 
 ## Scope
 
-In:
+In scope: one payment aggregate, authorize/get/capture use cases, PostgreSQL persistence, Flyway migration, REST contract, Testcontainers integration test, Docker demo, k6 benchmark, and core coverage gate.
 
-- Implementar o menor produto funcional que prove o claim.
-- Rodar por Docker.
-- Gerar benchmark JSON reproduzivel.
+Out of scope: PCI compliance, ledger, refunds, settlement, chargebacks, authentication, external acquirers, brokers, event sourcing, and multi-region operation.
 
-Out:
+## Invariants
 
-- Publicar repo antes do primeiro resultado numerico.
-- Depender de segredo pago para o caminho default.
+1. Amount is positive, currency is exactly three uppercase letters, and merchant reference is nonblank.
+2. One idempotency key maps to one normalized authorization payload.
+3. Authorization starts in `AUTHORIZED`.
+4. Capture changes `AUTHORIZED` to `CAPTURED`; replay preserves the original capture.
+5. Domain and application import no framework, adapter, transport, database, broker, or cloud SDK.
 
-## Architecture
+## Public Contract
 
-`	xt
-client -> app -> domain -> adapters -> benchmark output
-`
+- `POST /v1/payments`
+- `GET /v1/payments/{id}`
+- `POST /v1/payments/{id}/capture`
+- `GET /actuator/health`
+- OpenAPI source: `api/openapi.yaml`
 
-## Benchmark
+## Definition Of Done
 
-Primary metric:
-
-- name: coverage_percent, p99_latency_ms
-- target: first reproducible baseline
-- command: pending
-- result file: enchmarks/results/*.json
-
-## Dataset or fixture
-
-- source: pending
-- size: pending
-- license: pending
-- deterministic seed: 42
-
-## Definition of done
-
-- [ ] Docker command works from clean clone.
-- [ ] README starts with project number and benchmark result.
-- [ ] Benchmark command writes JSON result.
-- [ ] Tests cover core behavior.
-- [ ] REFERENCES.md explains reuse.
-- [ ] No secret or paid credential required for default demo.
+- [x] One `docker run` starts PostgreSQL, migrates, serves, warms up, benchmarks, prints JSON, and exits.
+- [x] README opens with project number and measured p99.
+- [x] Baseline and confirmation JSON are committed.
+- [x] Core line coverage is at least 75%.
+- [x] PostgreSQL behavior is covered with Testcontainers when Docker is available.
+- [x] OpenSpec artifacts and reuse review exist.
+- [ ] Public CI is green on the published commit.

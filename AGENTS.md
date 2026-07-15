@@ -8,6 +8,8 @@ Agents must use the local `.portfolio/` snapshot as the source of truth when it 
 
 Read `.portfolio/decision-brain/agent-graph.yaml` first. The principal agent coordinates these roles:
 
+0. `agentic-spec-governance`
+0. `component-pack-selector`
 1. `program-planner`
 2. `architecture-selector`
 3. `engineering-principles-reviewer`
@@ -27,12 +29,20 @@ If the runtime cannot spawn subagents, the principal agent executes the roles se
 ## Required Before Implementation
 
 - Update `project.yaml`.
+- Select the component pack from `.portfolio/component-packs/manifest.yaml`.
+- Keep `openspec/config.yaml` coherent with the project decision; if OpenSpec is not installed, follow the same artifact graph manually in `sdd/`.
 - Fill `sdd/spec.md`.
 - Fill `sdd/architecture-decision.md`.
 - Fill `sdd/technical-decision.md`.
 - Fill `sdd/benchmark-plan.md`.
 - Fill `sdd/agent-handoff.md`.
 - Fill `sdd/reuse-improvement-review.md`.
+
+## Reuse Priority
+
+Prioritize the skills installed in `.codex/skills/` and `.claude/skills/`, then the local `.portfolio/` snapshot. Use external repositories as references for architecture, organization, schemas, workflows, tests, benchmarks, docs, and DX only when they improve the specific project. If an external pattern is better than the current kit, update the kit or record the improvement in `sdd/reuse-improvement-review.md`.
+
+Do not replace local skills, install external components, or copy code from reference repositories without a recorded decision, license check, attribution, and user approval when machine-level tooling changes.
 
 ## Local-First Rule
 

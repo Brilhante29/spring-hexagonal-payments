@@ -1,0 +1,11 @@
+.git
+.github
+.gradle
+.claude
+.codex
+.portfolio
+build
+benchmarks/results/*.json
+openspec/artifacts
+README.md
+sdd

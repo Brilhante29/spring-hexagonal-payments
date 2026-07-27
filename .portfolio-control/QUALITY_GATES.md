@@ -31,5 +31,3 @@ Completion requires evidence, not intent.
 - [x] Independent review found no blocker; CI green on clean checkout.
       Evidence (2026-07-27): run 30293761301 concluded success (build + tests +
       coverage + Docker demo smoke) on branch codex/spring-hexagonal-payments/publication-gates.
-      Pending: push of branch `codex/spring-hexagonal-payments/publication-gates`
-      to trigger the pinned CI on a clean GitHub-hosted checkout.

@@ -8,7 +8,7 @@ program:
     - PostgreSQL atomic insert pattern
     - architecture boundary test
     - p99 plus coverage benchmark contract
-status: published
+status: benchmarked
 claim: "Idempotent payment authorization and capture preserve domain rules while Spring, JDBC, and PostgreSQL remain replaceable adapters."
 stack:
   - java-25

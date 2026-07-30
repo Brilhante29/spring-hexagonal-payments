@@ -8,8 +8,8 @@
 - [x] API contract, SDD, references, and reuse review are present.
 - [x] Baseline and confirmation JSON are reproducible and stable.
 - [x] Three-run V2 publication result is generated and schema-valid.
-- [ ] Final publication commit is pushed and exact-head CI evidence is attached.
-- [ ] Status is promoted to `published` only after remote evidence.
+- [x] Final publication commit `bedd98e964f94636463c97eb66f4f3a7d3711cd2` is pushed and exact-head CI run `30581889788` is green.
+- [x] Status is promoted to `published` only after remote evidence.
 - [x] No secret, paid API, or cloud account is required.
 - [x] No control characters or generated build outputs are tracked.
 - [x] OpenSpec artifacts reflect the final project state.

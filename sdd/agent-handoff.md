@@ -27,6 +27,6 @@
 
 ## Current Evidence
 
-Status: publication-v2
+Status: published
 
-V2 median p99: 108.122 ms, mean throughput: 734.4 req/s, minimum core coverage: 95.65%, zero HTTP failures across three runs. V2 schema validation passed with zero errors. Raw results: benchmarks/results/payments-baseline.json, benchmarks/results/payments-confirmation.json, and benchmarks/results/payments-publication-run-3.json. Publication result: benchmarks/publication/payments-baseline-v2.json.
+V2 median p99: 108.122 ms, mean throughput: 734.4 req/s, minimum core coverage: 95.65%, zero HTTP failures across three runs. V2 schema validation passed with zero errors. Raw results: benchmarks/results/payments-baseline.json, benchmarks/results/payments-confirmation.json, and benchmarks/results/payments-publication-run-3.json. Publication result: benchmarks/publication/payments-baseline-v2.json. Exact-head CI: https://github.com/Brilhante29/spring-hexagonal-payments/actions/runs/30581889788.

@@ -21,6 +21,6 @@
 - [x] Confirm published CI is green.
 - [x] Confirm article uses committed benchmark result.
 - [x] Generate and validate the three-run V2 publication result.
-- [ ] Push the V2 source commit and verify exact-head CI.
-- [ ] Promote status to `published` with publication evidence.
+- [x] Push the V2 source commit and verify exact-head CI for `bedd98e964f94636463c97eb66f4f3a7d3711cd2`.
+- [x] Promote status to `published` with publication evidence.
 - [x] Confirm `voice-check.md` verdict is aligned or intentionally overridden.

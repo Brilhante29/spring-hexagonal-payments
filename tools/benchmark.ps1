@@ -14,8 +14,10 @@ $results = Join-Path $root "benchmarks/results"
 New-Item -ItemType Directory -Force -Path $results | Out-Null
 $resolvedResults = (Resolve-Path -LiteralPath $results).Path
 
-docker build -t $Image $root
-if ($LASTEXITCODE -ne 0) { throw "Docker build failed" }
+if (-not $SkipBuild) {
+    docker build -t $Image $root
+    if ($LASTEXITCODE -ne 0) { throw "Docker build failed" }
+}
 
 docker run --rm `
     --mount "type=bind,source=$resolvedResults,target=/results" `

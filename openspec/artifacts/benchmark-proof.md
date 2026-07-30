@@ -4,12 +4,12 @@
 
 - Metric: `p99_latency_ms`
 - Unit: `milliseconds`
-- Result: p99_latency_ms = 131.41 milliseconds
-- Result path: `benchmarks/results/payments-baseline.json`
+- Result: V2 median p99_latency_ms = 108.122 milliseconds across three independent Docker runs
+- V1 result path: `benchmarks/results/payments-baseline.json`
 
 ## Command
 
-    powershell -NoProfile -ExecutionPolicy Bypass -File tools/benchmark.ps1
+    powershell -NoProfile -ExecutionPolicy Bypass -File tools/benchmark-v2.ps1
 
 ## Evidence
 

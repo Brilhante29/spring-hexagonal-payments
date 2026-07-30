@@ -27,4 +27,6 @@
 
 ## Current Evidence
 
-Baseline: 131.414 ms p99, 758.3 req/s, 95.65% core line coverage, zero HTTP failures. Confirmation variance is below 2.1% for p99 and throughput.
+Status: publication-v2
+
+V2 median p99: 108.122 ms, mean throughput: 734.4 req/s, minimum core coverage: 95.65%, zero HTTP failures across three runs. V2 schema validation passed with zero errors. Raw results: benchmarks/results/payments-baseline.json, benchmarks/results/payments-confirmation.json, and benchmarks/results/payments-publication-run-3.json. Publication result: benchmarks/publication/payments-baseline-v2.json.

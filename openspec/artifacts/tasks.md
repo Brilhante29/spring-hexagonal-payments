@@ -20,4 +20,7 @@
 - [x] Validate project.
 - [x] Confirm published CI is green.
 - [x] Confirm article uses committed benchmark result.
+- [x] Generate and validate the three-run V2 publication result.
+- [ ] Push the V2 source commit and verify exact-head CI.
+- [ ] Promote status to `published` with publication evidence.
 - [x] Confirm `voice-check.md` verdict is aligned or intentionally overridden.

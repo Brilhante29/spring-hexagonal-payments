@@ -1,0 +1,283 @@
+{
+    "schema_version":  2,
+    "run_id":  "ed8c4e2f-3cb4-4abd-815c-e31a7387dc76",
+    "project":  "spring-hexagonal-payments",
+    "benchmark_id":  "payments.authorization.v1",
+    "workload":  {
+                     "version":  "1.0.0",
+                     "fixture_digest":  "sha256:1fb3b060bd4c2f93687c938617a0d23a44389efcc3264318a20f4d9c5c261997",
+                     "config_digest":  "sha256:2d26f8f657b98d51c192c0869f18f3af6543da193cd4b40e428dc9ec6b63b2cb",
+                     "warmup_iterations":  200,
+                     "measured_iterations":  8012,
+                     "concurrency":  32
+                 },
+    "metrics":  [
+                    {
+                        "name":  "p99_latency_ms",
+                        "value":  108.122,
+                        "unit":  "milliseconds",
+                        "direction":  "lower_is_better",
+                        "samples":  [
+                                        87.201,
+                                        108.122,
+                                        120.869
+                                    ],
+                        "failures":  0,
+                        "summary":  {
+                                        "aggregation":  "median_p99_mean_throughput_min_coverage_min_checks_max_failures",
+                                        "repetitions":  3,
+                                        "p99_latency_ms":  108.122,
+                                        "throughput_rps":  734.4,
+                                        "measured_requests_per_run":  8012,
+                                        "warmup_requests_per_run":  200,
+                                        "coverage_percent":  95.65,
+                                        "checks_rate":  1,
+                                        "http_failure_rate":  0,
+                                        "runs":  [
+                                                     {
+                                                         "p99_latency_ms":  87.201,
+                                                         "throughput_rps":  801.2,
+                                                         "measured_requests":  8012,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     },
+                                                     {
+                                                         "p99_latency_ms":  108.122,
+                                                         "throughput_rps":  756.3,
+                                                         "measured_requests":  7563,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     },
+                                                     {
+                                                         "p99_latency_ms":  120.869,
+                                                         "throughput_rps":  645.7,
+                                                         "measured_requests":  6457,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     }
+                                                 ]
+                                    }
+                    },
+                    {
+                        "name":  "throughput_rps",
+                        "value":  734.4,
+                        "unit":  "requests_per_second",
+                        "direction":  "higher_is_better",
+                        "samples":  [
+                                        801.2,
+                                        756.3,
+                                        645.7
+                                    ],
+                        "failures":  0,
+                        "summary":  {
+                                        "aggregation":  "median_p99_mean_throughput_min_coverage_min_checks_max_failures",
+                                        "repetitions":  3,
+                                        "p99_latency_ms":  108.122,
+                                        "throughput_rps":  734.4,
+                                        "measured_requests_per_run":  8012,
+                                        "warmup_requests_per_run":  200,
+                                        "coverage_percent":  95.65,
+                                        "checks_rate":  1,
+                                        "http_failure_rate":  0,
+                                        "runs":  [
+                                                     {
+                                                         "p99_latency_ms":  87.201,
+                                                         "throughput_rps":  801.2,
+                                                         "measured_requests":  8012,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     },
+                                                     {
+                                                         "p99_latency_ms":  108.122,
+                                                         "throughput_rps":  756.3,
+                                                         "measured_requests":  7563,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     },
+                                                     {
+                                                         "p99_latency_ms":  120.869,
+                                                         "throughput_rps":  645.7,
+                                                         "measured_requests":  6457,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     }
+                                                 ]
+                                    }
+                    },
+                    {
+                        "name":  "core_coverage_percent",
+                        "value":  95.65,
+                        "unit":  "percent",
+                        "direction":  "target",
+                        "samples":  [
+                                        95.65,
+                                        95.65,
+                                        95.65
+                                    ],
+                        "failures":  0,
+                        "summary":  {
+                                        "aggregation":  "median_p99_mean_throughput_min_coverage_min_checks_max_failures",
+                                        "repetitions":  3,
+                                        "p99_latency_ms":  108.122,
+                                        "throughput_rps":  734.4,
+                                        "measured_requests_per_run":  8012,
+                                        "warmup_requests_per_run":  200,
+                                        "coverage_percent":  95.65,
+                                        "checks_rate":  1,
+                                        "http_failure_rate":  0,
+                                        "runs":  [
+                                                     {
+                                                         "p99_latency_ms":  87.201,
+                                                         "throughput_rps":  801.2,
+                                                         "measured_requests":  8012,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     },
+                                                     {
+                                                         "p99_latency_ms":  108.122,
+                                                         "throughput_rps":  756.3,
+                                                         "measured_requests":  7563,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     },
+                                                     {
+                                                         "p99_latency_ms":  120.869,
+                                                         "throughput_rps":  645.7,
+                                                         "measured_requests":  6457,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     }
+                                                 ]
+                                    }
+                    },
+                    {
+                        "name":  "checks_rate",
+                        "value":  1,
+                        "unit":  "ratio",
+                        "direction":  "target",
+                        "samples":  [
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                        "failures":  0,
+                        "summary":  {
+                                        "aggregation":  "median_p99_mean_throughput_min_coverage_min_checks_max_failures",
+                                        "repetitions":  3,
+                                        "p99_latency_ms":  108.122,
+                                        "throughput_rps":  734.4,
+                                        "measured_requests_per_run":  8012,
+                                        "warmup_requests_per_run":  200,
+                                        "coverage_percent":  95.65,
+                                        "checks_rate":  1,
+                                        "http_failure_rate":  0,
+                                        "runs":  [
+                                                     {
+                                                         "p99_latency_ms":  87.201,
+                                                         "throughput_rps":  801.2,
+                                                         "measured_requests":  8012,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     },
+                                                     {
+                                                         "p99_latency_ms":  108.122,
+                                                         "throughput_rps":  756.3,
+                                                         "measured_requests":  7563,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     },
+                                                     {
+                                                         "p99_latency_ms":  120.869,
+                                                         "throughput_rps":  645.7,
+                                                         "measured_requests":  6457,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     }
+                                                 ]
+                                    }
+                    },
+                    {
+                        "name":  "http_failure_rate",
+                        "value":  0,
+                        "unit":  "ratio",
+                        "direction":  "target",
+                        "samples":  [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                        "failures":  0,
+                        "summary":  {
+                                        "aggregation":  "median_p99_mean_throughput_min_coverage_min_checks_max_failures",
+                                        "repetitions":  3,
+                                        "p99_latency_ms":  108.122,
+                                        "throughput_rps":  734.4,
+                                        "measured_requests_per_run":  8012,
+                                        "warmup_requests_per_run":  200,
+                                        "coverage_percent":  95.65,
+                                        "checks_rate":  1,
+                                        "http_failure_rate":  0,
+                                        "runs":  [
+                                                     {
+                                                         "p99_latency_ms":  87.201,
+                                                         "throughput_rps":  801.2,
+                                                         "measured_requests":  8012,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     },
+                                                     {
+                                                         "p99_latency_ms":  108.122,
+                                                         "throughput_rps":  756.3,
+                                                         "measured_requests":  7563,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     },
+                                                     {
+                                                         "p99_latency_ms":  120.869,
+                                                         "throughput_rps":  645.7,
+                                                         "measured_requests":  6457,
+                                                         "coverage_percent":  95.65,
+                                                         "checks_rate":  1,
+                                                         "http_failure_rate":  0
+                                                     }
+                                                 ]
+                                    }
+                    }
+                ],
+    "execution":  {
+                      "command":  "powershell -NoProfile -ExecutionPolicy Bypass -File tools/benchmark-v2.ps1 -Image spring-hexagonal-payments:benchmark -DurationSeconds 10 -VirtualUsers 32 -WarmupRequests 200 -Repeat 3",
+                      "started_at":  "2026-07-30T20:57:05.5764214Z",
+                      "duration_seconds":  78.97,
+                      "exit_code":  0,
+                      "repeat":  3
+                  },
+    "environment":  {
+                        "runtime":  "Java 25, Kotlin 2.4.10, Spring Boot 4.1.0, PostgreSQL 18.4, k6 2.1.0",
+                        "architecture":  "Linux x86_64 Docker container",
+                        "hardware_class":  "local-docker"
+                    },
+    "provenance":  {
+                       "source_commit":  "85d40358c37530c0058c71060e01feb96e47c36b",
+                       "clean_tree":  true,
+                       "image_ref":  "spring-hexagonal-payments:benchmark",
+                       "image_digest":  "sha256:758f01e3d44fecf90a745dd9bdaf6c7bea5e83aef0b42c06d6fb8a07daaafe7b",
+                       "dependency_lock_digest":  "sha256:72d327bb4a13c1fbed0953b14b0e1706f404c7eaa9c64df337d6c5b4b056abdc",
+                       "producer":  "local",
+                       "artifact_digest":  "sha256:788f678aba021518c3d13e624ef61798edd6ec48d66ed0e42d3d99cb51e8f18d"
+                   },
+    "comparability_key":  "payments-authorization:1.0.0:spring-boot-4.1.0:jdbc-postgresql:k6-2.1.0:x86_64"
+}

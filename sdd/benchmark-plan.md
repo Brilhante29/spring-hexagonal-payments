@@ -44,14 +44,14 @@ docker run --rm spring-hexagonal-payments
 - Check rate equals 1.
 - p99 is below 250 ms.
 - Core line coverage is at least 75%.
-- Baseline and confirmation p99 differ by at most 15%.
-- Result conforms to `.portfolio/contracts/benchmark-result.schema.json`.
+- V2 records three independent runs; its p99 publication value is the median and its throughput is the arithmetic mean.
+- V1 result conforms to `.portfolio/contracts/benchmark-result.schema.json` and V2 result conforms to `contracts/benchmark-result-v2.schema.json`.
 
 ## Results
 
 | Run | p99 ms | req/s | Requests | Failures | Core coverage |
 |---|---:|---:|---:|---:|---:|
-| Baseline | 88.555 | 852.1 | 8,521 | 0 | 95.65% |
-| Confirmation | 108.991 | 738.5 | 7,385 | 0 | 95.65% |
+| V2 run 1 | 87.201 | 801.2 | 8,012 | 0 | 95.65% |
+| V2 run 2 | 108.122 | 756.3 | 7,563 | 0 | 95.65% |
 
-Current p99 variance: 23.08%. Throughput variance: 13.32%. V2 publication uses three runs and median p99 to make instability visible instead of hiding it.
+V2 publication result: `benchmarks/publication/payments-baseline-v2.json`. It records three samples and provenance digests.

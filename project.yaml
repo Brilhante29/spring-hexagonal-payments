@@ -124,7 +124,7 @@ design_system:
     - references_table
   diagram_required: true
 reuse:
-  kit_version: 75e2407
+  kit_version: 9b74358
   uses:
     - catalog
     - programs

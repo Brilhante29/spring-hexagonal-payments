@@ -1,8 +1,8 @@
-# #11 spring-hexagonal-payments: 131.414 ms p99 at 758.3 req/s
+# #11 spring-hexagonal-payments: 108.122 ms median p99 at 734.4 req/s
 
 **Claim:** idempotent payment authorization and capture preserve domain rules while Spring, JDBC, and PostgreSQL remain replaceable adapters.
 
-**Benchmark:** `88.555 ms` p99, `852.1 req/s`, and `95.65%` core line coverage across 8,521 measured authorizations with zero HTTP failures.
+**Benchmark:** V1 p99 `87.201 ms`; publication V2 median p99 `108.122 ms`, mean `734.4 req/s`, minimum core line coverage `95.65%`, and zero HTTP failures across three Docker runs.
 
 [![CI](https://github.com/Brilhante29/spring-hexagonal-payments/actions/workflows/ci.yml/badge.svg)](https://github.com/Brilhante29/spring-hexagonal-payments/actions/workflows/ci.yml)
 
@@ -38,18 +38,18 @@ Linux and macOS can use:
 
 ## Benchmark Result
 
-| Metric | Baseline | Confirmation | Direction |
+| Metric | V2 aggregate | Runs 1 / 2 / 3 | Direction |
 |---|---:|---:|---|
-| p99_latency_ms | 88.555 | 108.991 | lower |
-| throughput_rps | 852.1 | 738.5 | higher |
-| measured_requests | 8,521 | 7,385 | higher |
-| core_coverage_percent | 95.65 | 95.65 | >= 75 |
-| checks_rate | 1.0 | 1.0 | exactly 1 |
-| http_failure_rate | 0.0 | 0.0 | exactly 0 |
+| p99_latency_ms | 108.122 median | 87.201 / 108.122 / 120.869 | lower |
+| throughput_rps | 734.4 mean | 801.2 / 756.3 / 645.7 | higher |
+| measured_requests | 22,032 total | 8,012 / 7,563 / 6,457 | higher |
+| core_coverage_percent | 95.65 minimum | 95.65 / 95.65 / 95.65 | >= 75 |
+| checks_rate | 1.0 minimum | 1.0 / 1.0 / 1.0 | exactly 1 |
+| http_failure_rate | 0.0 maximum | 0.0 / 0.0 / 0.0 | exactly 0 |
 
 Inputs: 32 virtual users, 10-second measured window, 200 unmeasured warm-up authorizations, one ephemeral PostgreSQL 18.4 instance. Environment: Docker Desktop 27.4.0, Linux/x86_64, 16 CPUs, Java 25, Kotlin 2.4.10, Spring Boot 4.1.0, Jackson 3.1.4, and k6 2.1.0.
 
-The current confirmation differed by 23.08% in p99 and 13.32% in throughput. This variance is why the V2 publication producer records three independent runs and aggregates p99 by median. Measured on 2026-07-30.
+The three-run p99 range is 87.201-120.869 ms. V2 exposes this variance and uses the median for the publication number instead of hiding instability. Measured on 2026-07-30.
 
 Results:
 

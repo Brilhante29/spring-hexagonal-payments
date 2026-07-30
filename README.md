@@ -2,7 +2,7 @@
 
 **Claim:** idempotent payment authorization and capture preserve domain rules while Spring, JDBC, and PostgreSQL remain replaceable adapters.
 
-**Benchmark:** `131.414 ms` p99, `758.3 req/s`, and `95.65%` core line coverage across 7,583 measured authorizations with zero HTTP failures.
+**Benchmark:** `88.555 ms` p99, `852.1 req/s`, and `95.65%` core line coverage across 8,521 measured authorizations with zero HTTP failures.
 
 [![CI](https://github.com/Brilhante29/spring-hexagonal-payments/actions/workflows/ci.yml/badge.svg)](https://github.com/Brilhante29/spring-hexagonal-payments/actions/workflows/ci.yml)
 
@@ -40,16 +40,16 @@ Linux and macOS can use:
 
 | Metric | Baseline | Confirmation | Direction |
 |---|---:|---:|---|
-| p99_latency_ms | 131.414 | 134.165 | lower |
-| throughput_rps | 758.3 | 772.8 | higher |
-| measured_requests | 7,583 | 7,728 | higher |
+| p99_latency_ms | 88.555 | 108.991 | lower |
+| throughput_rps | 852.1 | 738.5 | higher |
+| measured_requests | 8,521 | 7,385 | higher |
 | core_coverage_percent | 95.65 | 95.65 | >= 75 |
 | checks_rate | 1.0 | 1.0 | exactly 1 |
 | http_failure_rate | 0.0 | 0.0 | exactly 0 |
 
 Inputs: 32 virtual users, 10-second measured window, 200 unmeasured warm-up authorizations, one ephemeral PostgreSQL 18.4 instance. Environment: Docker Desktop 27.4.0, Linux/x86_64, 16 CPUs, Java 25, Kotlin 2.4.10, Spring Boot 4.1.0, Jackson 3.1.4, and k6 2.1.0.
 
-The confirmation differed by 2.09% in p99 and 1.91% in throughput. Measured on 2026-07-15.
+The current confirmation differed by 23.08% in p99 and 13.32% in throughput. This variance is why the V2 publication producer records three independent runs and aggregates p99 by median. Measured on 2026-07-30.
 
 Results:
 

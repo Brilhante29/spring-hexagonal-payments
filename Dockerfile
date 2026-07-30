@@ -1,6 +1,6 @@
 FROM gradle:9.3.0-jdk25-alpine AS build
 WORKDIR /src
-COPY settings.gradle.kts build.gradle.kts ./
+COPY settings.gradle.kts build.gradle.kts gradle.lockfile ./
 RUN --mount=type=cache,target=/home/gradle/.gradle \
     gradle dependencies --no-daemon --quiet >/dev/null
 COPY src ./src

@@ -51,7 +51,7 @@ docker run --rm spring-hexagonal-payments
 
 | Run | p99 ms | req/s | Requests | Failures | Core coverage |
 |---|---:|---:|---:|---:|---:|
-| Baseline | 131.414 | 758.3 | 7,583 | 0 | 95.65% |
-| Confirmation | 134.165 | 772.8 | 7,728 | 0 | 95.65% |
+| Baseline | 88.555 | 852.1 | 8,521 | 0 | 95.65% |
+| Confirmation | 108.991 | 738.5 | 7,385 | 0 | 95.65% |
 
-P99 variance: 2.09%. Throughput variance: 1.91%.
+Current p99 variance: 23.08%. Throughput variance: 13.32%. V2 publication uses three runs and median p99 to make instability visible instead of hiding it.

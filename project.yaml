@@ -1,5 +1,6 @@
 id: 11
 name: spring-hexagonal-payments
+manifest_version: 2
 program:
   id: backend-reliability-platform
   narrative_fit: "Provides the synchronous money-movement boundary used by later outbox, saga, event-sourcing, gateway, and observability projects."
@@ -143,6 +144,8 @@ benchmark:
   unit: milliseconds
   command: powershell -NoProfile -ExecutionPolicy Bypass -File tools/benchmark.ps1
   result_path: benchmarks/results/payments-baseline.json
+  publication_result_path: benchmarks/publication/payments-baseline-v2.json
+  evidence_status: current
 release:
   docker: docker run --rm spring-hexagonal-payments
   no_secret_default_path: true

@@ -2,7 +2,11 @@ param(
     [string]$Image = "spring-hexagonal-payments",
     [int]$DurationSeconds = 10,
     [int]$VirtualUsers = 32,
-    [int]$WarmupRequests = 200
+    [int]$WarmupRequests = 200,
+    [int]$Repeat = 1,
+    [ValidatePattern("^[A-Za-z0-9._-]+$")]
+    [string]$ResultName = "payments-baseline.json",
+    [switch]$SkipBuild
 )
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
@@ -18,7 +22,7 @@ docker run --rm `
     -e "DURATION=${DurationSeconds}s" `
     -e "VUS=$VirtualUsers" `
     -e "WARMUP_REQUESTS=$WarmupRequests" `
-    -e "REPEAT=1" `
-    -e "RESULT_PATH=/results/payments-baseline.json" `
+    -e "REPEAT=$Repeat" `
+    -e "RESULT_PATH=/results/$ResultName" `
     $Image
 if ($LASTEXITCODE -ne 0) { throw "Docker benchmark failed" }

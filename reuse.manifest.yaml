@@ -1,0 +1,22 @@
+kit_version: 9b743580ebe0f8d9f794d75c50060780a3e59e75
+project: spring-hexagonal-payments
+consumed:
+  - contract: project-manifest-v2
+    source: contracts/project.schema.json
+  - contract: benchmark-v2
+    source: contracts/benchmark-result-v2.schema.json
+  - automation: exact-head-publication
+    source: tools/verify-github-publication.ps1
+  - automation: execution-telemetry
+    source: tools/record-execution-event.ps1
+  - pattern: continuation-map
+    source: docs/agent-continuation-map.md
+contributed:
+  - generic: Gradle dependency locking as benchmark provenance
+    candidate_for: spring-kotlin-backend family
+  - generic: Docker benchmark V2 producer for JVM/k6 workloads
+    candidate_for: backend-reliability-platform family
+project_specific_stays_local:
+  - payment aggregate and idempotency rules
+  - PostgreSQL schema and payment fixture
+  - k6 authorization workload

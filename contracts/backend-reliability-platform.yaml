@@ -1,0 +1,27 @@
+schema_version: 1
+contract_id: payment-authorization-v1
+provider:
+  project: spring-hexagonal-payments
+  project_number: 11
+  protocol: http
+  specification: ../api/openapi.yaml
+  operation: POST /v1/payments
+consumer:
+  project: event-sourcing-orders
+  project_number: 14
+request:
+  idempotency_header: Idempotency-Key
+  idempotency_format: "order:{orderId}:authorize:v1"
+  fields: [amount_minor, currency, merchant_reference]
+  merchant_reference_mapping: orderId
+success:
+  first_authorization_status: 201
+  replay_status: 200
+  identity_field: id
+failure:
+  invalid_request_status: 400
+  idempotency_conflict_status: 409
+compatibility:
+  breaking_changes_require_new_contract_id: true
+  provider_database_is_private: true
+  consumer_must_retry_with_same_idempotency_key: true

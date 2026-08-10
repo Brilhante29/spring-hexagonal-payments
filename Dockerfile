@@ -4,6 +4,8 @@ COPY settings.gradle.kts build.gradle.kts gradle.lockfile ./
 RUN --mount=type=cache,target=/home/gradle/.gradle \
     gradle dependencies --no-daemon --quiet >/dev/null
 COPY src ./src
+COPY api ./api
+COPY contracts ./contracts
 RUN --mount=type=cache,target=/home/gradle/.gradle \
     gradle clean test writeCoverage bootJar --no-daemon
 

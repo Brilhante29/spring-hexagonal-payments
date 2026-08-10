@@ -14,6 +14,7 @@
 - Capture locks the payment row, changes state once, and is idempotent when replayed.
 - Domain and application code import neither Spring, JDBC, HTTP, Flyway, nor PostgreSQL.
 - The default path needs no cloud account, paid API, or secret.
+- The #14 orders service consumes a versioned authorization contract without sharing the payments database.
 
 ## Run With Docker
 
@@ -113,6 +114,8 @@ Additional operations:
 - `GET /actuator/health`
 
 Contract: `api/openapi.yaml`.
+
+Macro integration contract: `contracts/backend-reliability-platform.yaml`. The orders service maps `orderId` to `merchant_reference` and retries with `Idempotency-Key: order:{orderId}:authorize:v1`; `PlatformContractTest` prevents the local manifest from drifting away from OpenAPI.
 
 ## Design Decisions
 

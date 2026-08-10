@@ -8,6 +8,7 @@
 4. `sdd/technical-decision.md`
 5. `api/openapi.yaml`
 6. `sdd/reuse-improvement-review.md`
+7. `contracts/backend-reliability-platform.yaml`
 
 ## Non-Negotiable Rules
 
@@ -17,6 +18,14 @@
 - Do not add Kafka, RabbitMQ, GraphQL, WebFlux, JPA, microservices, or cloud SDKs without a new problem force and decision record.
 - Keep one-command Docker execution and machine-readable benchmark output.
 - Run the OpenSpec plan and reuse review before publication.
+- Keep the #14 consumer contract aligned with OpenAPI and preserve private databases.
+
+## Macro Contract
+
+- Provider: `POST /v1/payments` from `api/openapi.yaml`.
+- Consumer: `event-sourcing-orders` (#14).
+- Lock: `contracts/backend-reliability-platform.yaml`.
+- Retry invariant: reuse `order:{orderId}:authorize:v1`.
 
 ## Verification
 

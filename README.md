@@ -1,4 +1,4 @@
-# #11 spring-hexagonal-payments: 108.122 ms median p99 at 734.4 req/s
+# Hexagonal Payments — Kotlin & Spring Boot
 
 **Claim:** idempotent payment authorization and capture preserve domain rules while Spring, JDBC, and PostgreSQL remain replaceable adapters.
 

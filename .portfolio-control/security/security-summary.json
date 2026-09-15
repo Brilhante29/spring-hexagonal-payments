@@ -1,0 +1,23 @@
+{
+  "disposition": "documented",
+  "fixable": 50,
+  "fixable_packages": {
+    "c-ares": 1,
+    "golang.org/x/crypto": 1,
+    "golang.org/x/text": 1,
+    "google.golang.org/grpc": 3,
+    "libcrypto3": 1,
+    "libssl3": 1,
+    "libuuid": 7,
+    "org.apache.tomcat.embed:tomcat-embed-core": 3,
+    "org.postgresql:postgresql": 1,
+    "stdlib": 31
+  },
+  "generated_at": "2026-09-15T19:30:09.176162Z",
+  "high_critical_total": 50,
+  "image": "spring-hexagonal-payments:sec",
+  "no_upstream_fix": 0,
+  "rationale": "Base images are pinned by digest so benchmark provenance stays comparable. Rebuilding does not clear these advisories: the current upstream digest carries the same set. Applying apt-get upgrade would make the image non-deterministic and change image_digest between builds of the same commit, breaking the V2 comparability contract.",
+  "repository": "spring-hexagonal-payments",
+  "sbom_packages": 209
+}
